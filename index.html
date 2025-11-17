@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI24Q — Штучний інтелект для твого бізнесу</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body { margin:0; font-family:'Inter',sans-serif; background:#0f0f1a; color:#fff; padding:20px; }
+    .container { max-width:420px; margin:0 auto; background:rgba(30,30,60,0.95); border-radius:24px; padding:32px; box-shadow:0 20px 40px rgba(0,0,0,0.6); backdrop-filter:blur(10px); }
+    h1 { font-size:28px; text-align:center; margin:0 0 8px; background:linear-gradient(90deg,#a78bfa,#c084fc); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    p { opacity:0.9; line-height:1.5; text-align:center; margin-bottom:32px; }
+    .field { margin-bottom:24px; }
+    label { display:block; margin-bottom:8px; font-size:14px; opacity:0.8; }
+    select, input { width:100%; padding:14px 16px; background:#1e1e3a; border:1px solid #333; border-radius:12px; color:#fff; font-size:16px; }
+    button { width:100%; padding:16px; background:linear-gradient(90deg,#a78bfa,#7c3aed); border:none; border-radius:12px; color:#fff; font-weight:600; font-size:17px; cursor:pointer; margin-top:16px; transition:0.3s; }
+    button:hover { transform:translateY(-2px); box-shadow:0 10px 20px rgba(124,58,237,0.4); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>AI24Q</h1>
+    <p>Отримай персональний план впровадження ШІ у твій бізнес за 7–14 днів</p>
+
+    <div class="field">
+      <label>📧 Твоя пошта (для плану)</label>
+      <input type="email" id="email" placeholder="example@company.com" required />
+    </div>
+
+    <div class="field">
+      <label>📏 Розмір бізнесу</label>
+      <select id="size" required>
+        <option value="" disabled selected>Обери варіант</option>
+        <option>Solo / фрілансер</option>
+        <option>Small (до 10 людей)</option>
+        <option>Medium (10–50)</option>
+        <option>Great (50+)</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>🎯 Головна мета</label>
+      <select id="goal" required>
+        <option value="" disabled selected>Обери варіант</option>
+        <option>Автоматизація процесів</option>
+        <option>Збільшення продажів</option>
+        <option>Новий продукт/сервіс</option>
+        <option>Оптимізація витрат</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>💰 Бюджет на проєкт</label>
+      <select id="budget" required>
+        <option value="" disabled selected>Обери варіант</option>
+        <option>до $3к</option>
+        <option>$3к – $10к</option>
+        <option>$10к – $30к</option>
+        <option>$30к+</option>
+      </select>
+    </div>
+
+    <button onclick="send()">Надіслати заявку</button>
+  </div>
+
+  <script>
+    function send() {
+      const data = {
+        email: document.getElementById('email').value,
+        size: document.getElementById('size').value,
+        goal: document.getElementById('goal').value,
+        budget: document.getElementById('budget').value
+      };
+      Telegram.WebApp.sendData(JSON.stringify(data));
+      Telegram.WebApp.close();
+    }
+    Telegram.WebApp.ready();
+    Telegram.WebApp.expand();
+  </script>
+</body>
+</html>
